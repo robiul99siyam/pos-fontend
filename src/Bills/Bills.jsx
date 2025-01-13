@@ -2,7 +2,7 @@ import image from "../assets/images.jpg";
 
 export default function Bills() {
   return (
-    <div className="w-auto shadow-sm rounded-sm border p-2 m-1 flex justify-start gap-5 items-center">
+    <div className="w-auto shadow-sm rounded-md border p-2 m-1 flex justify-start gap-5 items-center">
       {/* Image Section */}
       <img src={image} className="w-14 h-14" alt="Category" />
 
