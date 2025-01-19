@@ -1,4 +1,4 @@
-import image from "../assets/images.jpg";
+import image from "../../assets/images.jpg";
 
 export default function Bills() {
   return (
@@ -20,7 +20,7 @@ export default function Bills() {
             -
           </button>
           <span>10</span>
-          <button className="bg-custom-brown text-white px-2 py-1 rounded-sm">
+          <button className=" bg-primary text-white px-2 py-1 rounded-sm">
             +
           </button>
         </div>
