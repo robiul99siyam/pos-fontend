@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { BiLogOut } from "react-icons/bi";
+import { Navigate, useNavigate } from "react-router-dom";
 import { api } from "../api";
 import Bills from "../components/Bills/Bills";
 import Category from "../components/category/Category";
@@ -8,12 +9,11 @@ import Products from "../components/product/Products";
 import { useAuth } from "../hooks/useAuth";
 import { useCategory } from "../hooks/useCategory";
 import { useProduct } from "../hooks/useProduct";
-
 export default function PrivateRoute() {
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
   const { category, setCategory } = useCategory();
   const { products, setProducts } = useProduct();
-
+  const naviagetor = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [filteredProducts, setFilteredProducts] = useState(products);
 
@@ -59,6 +59,11 @@ export default function PrivateRoute() {
     setFilteredProducts(filtered);
   };
 
+  const logout = () => {
+    setAuth(null);
+    localStorage.removeItem("auth");
+    naviagetor("/login");
+  };
   return (
     <>
       {auth ? (
@@ -71,10 +76,10 @@ export default function PrivateRoute() {
               <div className="grid grid-cols-12 mt-3">
                 {/* grid */}
                 <div className="col-span-1">
-                  <h1>Product List 1</h1>
+                  <BiLogOut onClick={logout} className="text-2xl mt-[450px]" />
                 </div>
                 {/* grid */}
-                <div className="col-span-11 ml-[45px]">
+                <div className="col-span-11 ml-[45px] shadow-sm">
                   <Category
                     category={category}
                     handleClick={handleClick}
@@ -92,7 +97,7 @@ export default function PrivateRoute() {
             {/* grid cols - 4 */}
             <div className="col-span-4">
               <h1 className="font-semibold text-xl">Bills</h1>
-              <Bills />
+              <Bills on />
             </div>
           </div>
         </div>

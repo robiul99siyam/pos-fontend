@@ -31,8 +31,11 @@ export default function LoginForm() {
 
         // localStorage.setItem("auth", JSON.stringify({ access_token, user }));
         setAuth({ access_token, user });
-
-        navigate("/");
+        if (user.role === "admin") {
+          navigate("/deshboard");
+        } else {
+          navigate("/");
+        }
       }
     } catch (error) {
       console.error(error?.message);

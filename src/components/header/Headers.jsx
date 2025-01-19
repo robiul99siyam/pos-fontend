@@ -1,4 +1,5 @@
 import { IoSearchSharp } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import logoImage from "../../assets/logo.png";
 import { useAuth } from "../../hooks/useAuth";
 export default function Headers() {
@@ -29,15 +30,17 @@ export default function Headers() {
       </div>
 
       <div className="flex justify-center gap-5 ">
-        <img
-          src={
-            image
-              ? `${import.meta.env.VITE_SERVER_BASE_URL}${image}`
-              : "https://via.placeholder.com/150"
-          }
-          className="w-12 h-12 rounded-full border border-primary"
-          alt=""
-        />
+        <Link to="/deshboard">
+          <img
+            src={
+              image
+                ? `${import.meta.env.VITE_SERVER_BASE_URL}${image}`
+                : "https://via.placeholder.com/150"
+            }
+            className="w-12 h-12 rounded-full border border-primary"
+            alt=""
+          />
+        </Link>
         <div className="flex flex-col">
           <h1 className="font-semibold">{username}</h1>
           <p className="text-gray-400">{role}</p>
