@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { BiLogOut } from "react-icons/bi";
 import { Navigate, useNavigate } from "react-router-dom";
 import { api } from "../api";
@@ -8,14 +8,11 @@ import Headers from "../components/header/Headers";
 import Products from "../components/product/Products";
 import { useAuth } from "../hooks/useAuth";
 import { useCategory } from "../hooks/useCategory";
-import { useProduct } from "../hooks/useProduct";
 export default function PrivateRoute() {
   const { auth, setAuth } = useAuth();
   const { category, setCategory } = useCategory();
-  const { products, setProducts } = useProduct();
+
   const naviagetor = useNavigate();
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [filteredProducts, setFilteredProducts] = useState(products);
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -33,31 +30,6 @@ export default function PrivateRoute() {
     };
     fetchCategory();
   }, []);
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await api.get(
-          `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/products/`
-        );
-
-        if (response.status === 200) {
-          setProducts(response.data);
-          setFilteredProducts(response.data);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchProduct();
-  }, []);
-  const handleClick = (categoryId) => {
-    setSelectedCategory(categoryId);
-    const filtered = products.filter((product) =>
-      categoryId ? product.category.id === categoryId : true
-    );
-    setFilteredProducts(filtered);
-  };
 
   const logout = () => {
     setAuth(null);
@@ -80,16 +52,9 @@ export default function PrivateRoute() {
                 </div>
                 {/* grid */}
                 <div className="col-span-11 ml-[45px] shadow-sm">
-                  <Category
-                    category={category}
-                    handleClick={handleClick}
-                    selectedCategory={selectedCategory}
-                  />
-                  {filteredProducts.length === 0 ? (
-                    <h1> No found</h1>
-                  ) : (
-                    <Products products={filteredProducts} />
-                  )}
+                  <Category category={category} />
+
+                  <Products />
                 </div>
               </div>
             </div>

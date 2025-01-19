@@ -1,11 +1,8 @@
-export default function CategoryCard({ item, handleClick }) {
+export default function CategoryCard({ item }) {
   const { name, image } = item;
 
   return (
-    <div
-      onClick={() => handleClick(item.id)}
-      className=" p-2 border border-transparent rounded-md transition duration-300 hover:shadow-lg hover:border-blue-950"
-    >
+    <div className=" p-2 border border-transparent rounded-md transition duration-300 hover:shadow-lg hover:border-blue-950">
       <img
         src={
           image

@@ -1,7 +1,12 @@
-export default function Products({ products }) {
+import { useFetch } from "../../hooks/useFetch";
+import { useProduct } from "../../hooks/useProduct";
+
+export default function Products() {
+  const { state } = useProduct();
+  const { loading, error } = useFetch();
   return (
     <div className="flex flex-wrap justify-start items-start mt-4 gap-6 bg-white p-4 ">
-      {products.map((product) => (
+      {state?.products.map((product) => (
         <div
           key={product.id}
           className="w-[200px] p-2 mx-auto h-auto border border-transparent hover:shadow-lg rounded-md hover:border-gray-500 transition duration-300"
