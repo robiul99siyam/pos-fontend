@@ -1,163 +1,122 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Field from "../../Form/Field";
+import { useLocation, useNavigate } from "react-router-dom";
+import { actions } from "../../actions";
+import { api } from "../../api";
+import { useProduct } from "../../hooks/useProduct";
+import ProductForm from "./ProductForm";
 
 export default function AddProduct() {
+  const location = useLocation();
+  const { dispatch } = useProduct();
+  const navigate = useNavigate();
+  const [previewImage, setPreviewImage] = useState(null);
+
   const {
     handleSubmit,
     formState: { errors },
     register,
+    setValue,
+    reset,
   } = useForm();
 
-  const submitForm = (formData) => {
-    console.log(formData);
+  const product = location.state?.product || null;
+  console.log(product?.image);
+  useEffect(() => {
+    if (product) {
+      setValue("name", product.name);
+      setValue("selling_price", product.selling_price);
+      setValue("supplier_id", product.supplier?.id);
+      setValue("stock", product.stock);
+      setValue("cost_price", product.cost_price);
+      setValue("uom", product.uom);
+      setValue("description", product.description);
+      setValue("category_id", product.category?.id);
+      setValue("upload_file", product.image);
+      // setPreviewImage(product?.image);
+      setPreviewImage(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/${product.image}`
+      );
+    } else {
+      reset();
+      setPreviewImage(null);
+    }
+  }, [product, reset, setValue]);
+  console.log(previewImage);
+  const submitForm = async (data) => {
+    console.log("Form Data Submitted:", data);
+    try {
+      dispatch({
+        type: actions.product.DATA_FETCHING,
+      });
+
+      const formData = new FormData();
+      if (data.upload_file[0]) {
+        formData.append("upload_file", data.upload_file[0]);
+      }
+      formData.append("name", data.name);
+      formData.append("selling_price", data.selling_price);
+      formData.append("supplier_id", data.supplier_id);
+      formData.append("stock", data.stock);
+      formData.append("cost_price", data.cost_price);
+      formData.append("uom", data.uom);
+      formData.append("description", data.description);
+      formData.append("category_id", data.category_id);
+
+      let response;
+
+      if (product) {
+        if (!data.upload_file[0]) {
+          formData.append("upload_file", product?.image);
+        }
+        response = await api.put(
+          `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/products/${
+            product.id
+          }`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+      } else {
+        response = await api.post(
+          `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/products/`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+      }
+
+      if (response.status === 200 || response.status === 201) {
+        dispatch({
+          type: actions.product[product ? "DATA_EDITED" : "DATA_CREATE"],
+          data: response.data,
+        });
+        reset();
+        navigate("/deshboard", { replace: true, product: null });
+      }
+      console.log("API Response:", response.data);
+    } catch (error) {
+      console.error("API Error:", error.response?.data || error.message);
+    }
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit(submitForm)}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {/* Product Name */}
-          <div className="mb-2">
-            <Field label="Product Name" error={errors.name}>
-              <input
-                {...register("name", {
-                  required: "Product name is Required",
-                })}
-                type="text"
-                id="name"
-                placeholder="Product Name"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
-              />
-            </Field>
-          </div>
-
-          {/* Selling Price */}
-          <div className="mb-2">
-            <Field label="Selling price" error={errors.selling_price}>
-              <input
-                {...register("selling_price", {
-                  required: "Selling price is Required",
-                  valueAsNumber: true,
-                  min: {
-                    value: 0,
-                    message: "Selling price cannot be negative",
-                  },
-                })}
-                type="number"
-                id="selling_price"
-                placeholder="Selling Price"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
-              />
-            </Field>
-          </div>
-
-          {/* Supplier Name */}
-          <div className="mb-2">
-            <Field label="Supplier Name" error={errors.supplier}>
-              <input
-                {...register("supplier", {
-                  required: "Supplier name is Required",
-                })}
-                type="text"
-                id="supplier"
-                placeholder="Supplier Name"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
-              />
-            </Field>
-          </div>
-
-          {/* Stock */}
-          <div className="mb-2">
-            <Field label="Stock" error={errors.stock}>
-              <input
-                {...register("stock", {
-                  required: "Stock is Required",
-                  valueAsNumber: true,
-                  min: {
-                    value: 0,
-                    message: "Stock cannot be negative",
-                  },
-                })}
-                type="number"
-                id="stock"
-                placeholder="Stock"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
-              />
-            </Field>
-          </div>
-
-          {/* Cost Price */}
-          <div className="mb-2">
-            <Field label="Cost Price" error={errors.cost_price}>
-              <input
-                {...register("cost_price", {
-                  required: "Cost price is Required",
-                  valueAsNumber: true,
-                  min: {
-                    value: 0,
-                    message: "Cost price cannot be negative",
-                  },
-                })}
-                type="number"
-                id="cost_price"
-                placeholder="Cost Price"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
-              />
-            </Field>
-          </div>
-
-          {/* UOM */}
-          <div className="mb-2">
-            <Field label="UOM" error={errors.uom}>
-              <input
-                {...register("uom", {
-                  required: "UOM is Required",
-                  valueAsNumber: true,
-                })}
-                type="text"
-                id="uom"
-                placeholder="UOM"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
-              />
-            </Field>
-          </div>
-
-          {/* Image Field */}
-          <div className="mb-2">
-            <Field label="Product Image" error={errors.image}>
-              <input
-                {...register("image", {
-                  required: "Product image is required",
-                  validate: (value) =>
-                    value?.length > 0 || "Please select an image",
-                })}
-                type="file"
-                id="image"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
-              />
-            </Field>
-          </div>
-          {/* product description  */}
-          <div className="mb-2">
-            <Field label="Product description" error={errors.description}>
-              <textarea
-                {...register("description")}
-                type="text"
-                id="description"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
-              />
-            </Field>
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          className="bg-primary px-8 w-[10%] block m-auto py-2 mt-1 text-white rounded-md"
-        >
-          Submit
-        </button>
-      </form>
+      <ProductForm
+        handleSubmit={handleSubmit}
+        submitForm={submitForm}
+        register={register}
+        errors={errors}
+        product={product}
+        previewImage={previewImage}
+        setPreviewImage={setPreviewImage}
+      />
     </>
   );
 }

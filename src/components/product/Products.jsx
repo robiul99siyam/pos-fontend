@@ -1,9 +1,13 @@
-import { useFetch } from "../../hooks/useFetch";
+import { ProductFetch } from "../../fetures/ProductFetch";
 import { useProduct } from "../../hooks/useProduct";
 
 export default function Products() {
   const { state } = useProduct();
-  const { loading, error } = useFetch();
+
+  const { loading, error } = ProductFetch();
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
     <div className="flex flex-wrap justify-start items-start mt-4 gap-6 bg-white p-4 ">
       {state?.products.map((product) => (
