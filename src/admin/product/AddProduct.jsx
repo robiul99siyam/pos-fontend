@@ -67,7 +67,7 @@ export default function AddProduct() {
 
       if (product) {
         if (!data.upload_file[0]) {
-          formData.append("upload_file", product?.image);
+          formData.append("new_upload_file", product?.image);
         }
         response = await api.put(
           `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/products/${
