@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { actions } from "../../actions";
@@ -10,7 +10,6 @@ export default function AddProduct() {
   const location = useLocation();
   const { dispatch } = useProduct();
   const navigate = useNavigate();
-  const [previewImage, setPreviewImage] = useState(null);
 
   const {
     handleSubmit,
@@ -21,7 +20,7 @@ export default function AddProduct() {
   } = useForm();
 
   const product = location.state?.product || null;
-  console.log(product?.image);
+
   useEffect(() => {
     if (product) {
       setValue("name", product.name);
@@ -29,20 +28,14 @@ export default function AddProduct() {
       setValue("supplier_id", product.supplier?.id);
       setValue("stock", product.stock);
       setValue("cost_price", product.cost_price);
-      setValue("uom", product.uom);
       setValue("description", product.description);
       setValue("category_id", product.category?.id);
       setValue("upload_file", product.image);
-      // setPreviewImage(product?.image);
-      setPreviewImage(
-        `${import.meta.env.VITE_SERVER_BASE_URL}/${product.image}`
-      );
     } else {
       reset();
-      setPreviewImage(null);
     }
   }, [product, reset, setValue]);
-  console.log(previewImage);
+
   const submitForm = async (data) => {
     console.log("Form Data Submitted:", data);
     try {
@@ -59,7 +52,7 @@ export default function AddProduct() {
       formData.append("supplier_id", data.supplier_id);
       formData.append("stock", data.stock);
       formData.append("cost_price", data.cost_price);
-      formData.append("uom", data.uom);
+      formData.append("sizes", data.sizes);
       formData.append("description", data.description);
       formData.append("category_id", data.category_id);
 
@@ -114,8 +107,6 @@ export default function AddProduct() {
         register={register}
         errors={errors}
         product={product}
-        previewImage={previewImage}
-        setPreviewImage={setPreviewImage}
       />
     </>
   );

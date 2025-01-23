@@ -1,48 +1,56 @@
-import React from "react";
-import { BiLogOut } from "react-icons/bi";
-import { Navigate, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import Bills from "../components/Bills/Bills";
 import Category from "../components/category/Category";
 import Headers from "../components/header/Headers";
 import Products from "../components/product/Products";
 import { useAuth } from "../hooks/useAuth";
 export default function PrivateRoute() {
-  const { auth, setAuth } = useAuth();
+  const { auth } = useAuth();
 
-  const naviagetor = useNavigate();
-
-  const logout = () => {
-    setAuth(null);
-    localStorage.removeItem("auth");
-    naviagetor("/login");
+  const [produtData, setProductData] = useState([]);
+  const handleProduct = (data) => {
+    // console.log(data);
+    setProductData([...produtData, data]);
   };
+  console.log(produtData);
   return (
     <>
       {auth ? (
-        <div className="mx-10 my-5 font-serif">
+        <div className="mx-2 my-5 font-serif">
           {/* grid */}
           <div className="grid grid-cols-12 gap-2">
             {/* grid col-span-8 */}
             <div className="col-span-8">
               <Headers />
-              <div className="grid grid-cols-12 mt-3">
+              <div className="grid grid-cols-12">
                 {/* grid */}
-                <div className="col-span-1">
-                  <BiLogOut onClick={logout} className="text-2xl mt-[450px]" />
-                </div>
-                {/* grid */}
-                <div className="col-span-11 ml-[45px] shadow-sm">
-                  <Category />
 
-                  <Products />
+                {/* grid */}
+                <div className="col-span-12 shadow-sm">
+                  <Category />
+                  <Products handleProductDispatch={handleProduct} />
                 </div>
               </div>
             </div>
 
             {/* grid cols - 4 */}
-            <div className="col-span-4">
+            <div className="col-span-4 relative h-full">
               <h1 className="font-semibold text-xl">Bills</h1>
-              <Bills on />
+              {/* Bills Section */}
+              <div className="h-[550px] overflow-y-auto">
+                <Bills
+                  produtData={produtData}
+                  setProductData={setProductData}
+                />
+              </div>
+
+              {/* Fixed Payment Button */}
+              <div className="absolute bottom-0 left-0 w-full">
+                <button className="w-full h-16 bg-primary rounded-lg text-white">
+                  Payment
+                </button>
+              </div>
             </div>
           </div>
         </div>

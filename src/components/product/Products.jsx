@@ -1,7 +1,7 @@
 import { ProductFetch } from "../../fetures/ProductFetch";
 import { useProduct } from "../../hooks/useProduct";
 
-export default function Products() {
+export default function Products({ handleProductDispatch }) {
   const { state } = useProduct();
 
   const { loading, error } = ProductFetch();
@@ -9,11 +9,12 @@ export default function Products() {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="flex flex-wrap justify-start items-start mt-4 gap-6 bg-white p-4 ">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {state?.products.map((product) => (
         <div
           key={product.id}
-          className="w-[200px] p-2 mx-auto h-auto border border-transparent hover:shadow-lg rounded-md hover:border-gray-500 transition duration-300"
+          onClick={() => handleProductDispatch(product)}
+          className="p-2 h-auto border border-gray-300 hover:shadow-lg rounded-md hover:border-gray-500 transition duration-300"
         >
           <img
             src={
@@ -21,16 +22,23 @@ export default function Products() {
                 ? `${import.meta.env.VITE_SERVER_BASE_URL}/${product.image}`
                 : "https://via.placeholder.com/150"
             }
-            className="w-auto h-[100px] mx-auto"
+            className="w-full h-[100px] object-cover rounded-md"
             alt={product.name}
           />
-          <p className="text-sm font-semibold text-start">{product.name}</p>
-          <p className="text-sm text-start">
-            Selling price : {product.selling_price} ৳
+          <p className="text-sm font-semibold text-start mt-2">
+            {product.name.slice(0, 30)}...
           </p>
-          <button className="bg-primary px-8 w-full mx-auto py-2 mt-1 text-white rounded-sm">
-            Add Billing
-          </button>
+
+          <div className="flex flex-wrap items-center mt-[2px]">
+            {product.sizes.map((size) => (
+              <span
+                key={size}
+                className="text-xs font-medium text-white bg-primary px-3 py-1 mr-[2px] mb-[2px] rounded-full"
+              >
+                {size}
+              </span>
+            ))}
+          </div>
         </div>
       ))}
     </div>

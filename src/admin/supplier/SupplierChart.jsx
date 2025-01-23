@@ -5,10 +5,10 @@ import SupplierFetch from "../../fetures/SupplierFetch";
 import { useSupplier } from "../../hooks/useSupplier";
 import { AdminPermision } from "../AdminPermision";
 export default function SupplierChart() {
-  const { state } = useSupplier();
+  const { supplierState } = useSupplier();
   const { loading, error } = SupplierFetch();
-  console.log(state);
-
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
   return (
     <>
       <div className="overflow-x-auto">
@@ -30,7 +30,7 @@ export default function SupplierChart() {
           </thead>
           {/* Table Body */}
           <tbody>
-            {state?.suppliers.map((supplier) => (
+            {supplierState?.suppliers.map((supplier) => (
               <tr key={supplier.id} className="transition duration-1000">
                 <td className="px-6 py-4">{supplier.name}</td>
                 <td className="px-6 py-4">{supplier.contact}</td>

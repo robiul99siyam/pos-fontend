@@ -1,14 +1,20 @@
 import React from "react";
+import { CategoryFetch } from "../../fetures/CategoryFetch";
+import SupplierFetch from "../../fetures/SupplierFetch";
 import Field from "../../Form/Field";
+import { useCategory } from "../../hooks/useCategory";
+import { useSupplier } from "../../hooks/useSupplier";
 export default function ProductForm({
   handleSubmit,
   submitForm,
   register,
   errors,
   product,
-  previewImage,
-  setPreviewImage,
 }) {
+  const { state } = useCategory();
+  const { supplierState } = useSupplier();
+  let { error } = SupplierFetch();
+  let { loading } = CategoryFetch();
   return (
     <>
       <form onSubmit={handleSubmit(submitForm)}>
@@ -51,7 +57,7 @@ export default function ProductForm({
           {/* supplier_id Name */}
           <div className="mb-2">
             <Field label="supplier Name" error={errors.supplier_id}>
-              <input
+              <select
                 {...register("supplier_id", {
                   required: "supplier name is Required",
                   valueAsNumber: true,
@@ -60,23 +66,40 @@ export default function ProductForm({
                 id="supplier_id"
                 placeholder="supplier Name"
                 className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
-              />
+              >
+                <option value="" disabled selected>
+                  Select a category
+                </option>
+                {!loading &&
+                  supplierState?.suppliers?.map((supplier) => (
+                    <option key={supplier.id} value={supplier.id}>
+                      {supplier.name}
+                    </option>
+                  ))}
+              </select>
             </Field>
           </div>
 
-          {/* categroy_id Name */}
+          {/* Category Selector */}
           <div className="mb-2">
-            <Field label="category Name" error={errors.category_id}>
-              <input
+            <Field label="Category Name" error={errors.category_id}>
+              <select
                 {...register("category_id", {
-                  required: "category name is Required",
-                  valueAsNumber: true,
+                  required: "Category name is required",
                 })}
-                type="number"
                 id="category_id"
-                placeholder="category Name"
                 className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
-              />
+              >
+                <option value="" disabled selected>
+                  Select a category
+                </option>
+                {!loading &&
+                  state?.categorys?.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
+                    </option>
+                  ))}
+              </select>
             </Field>
           </div>
 
@@ -120,18 +143,21 @@ export default function ProductForm({
             </Field>
           </div>
 
-          {/* UOM */}
+          {/* sizes */}
           <div className="mb-2">
-            <Field label="UOM" error={errors.uom}>
-              <input
-                {...register("uom", {
-                  required: "UOM is Required",
-                })}
-                type="text"
-                id="uom"
-                placeholder="UOM"
+            <Field label="Sizes" error={errors.sizes}>
+              <select
+                {...register("sizes", { required: "Sizes is Required" })}
+                id="sizes"
+                multiple
                 className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
-              />
+              >
+                <option value="S">Small</option>
+                <option value="M">Medium</option>
+                <option value="L">Large</option>
+                <option value="XL">Extra Large</option>
+                <option value="XXL">Extra Extra Large</option>
+              </select>
             </Field>
           </div>
 
@@ -141,27 +167,14 @@ export default function ProductForm({
             <Field label="Product Image" error={errors.image}>
               <input
                 {...register("upload_file", {
-                  required: !product && "Product image is required",
+                  required: "Product image is required",
                   validate: (value) =>
                     value?.length > 0 || "Please select an image",
                 })}
-                onChange={(e) => {
-                  if (e.target.files?.[0]) {
-                    setPreviewImage(URL.createObjectURL(e.target.files[0]));
-                  }
-                }}
                 type="file"
                 id="upload_file"
                 className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               />
-
-              {previewImage && (
-                <img
-                  src={previewImage}
-                  alt="Product Preview"
-                  className="w-24 h-24 object-cover mt-2 rounded-md"
-                />
-              )}
             </Field>
           </div>
           {/* product description  */}

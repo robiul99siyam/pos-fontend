@@ -48,13 +48,16 @@ export default function ProductChart() {
       <AdminPermision>
         <Link
           to="add-product"
-          className="bg-primary ml-auto text-white px-2 py-2 rounded-md"
+          className="bg-primary  ml-auto text-white px-2 py-2 rounded-md"
         >
           {" "}
           Add Product +{" "}
         </Link>
       </AdminPermision>
-      <div className="overflow-x-auto">
+      <div
+        className="w-full max-h-96 mt-10 sm:overflow-x-auto overflow-y-auto border border-gray-300 rounded-lg 
+    shadow"
+      >
         <table className="min-w-full table-auto">
           {/* Table Header */}
           <thead className="bg-gray-100">
@@ -67,7 +70,7 @@ export default function ProductChart() {
               <th className="px-6 py-4 text-left font-semibold">Stock</th>
               <th className="px-6 py-4 text-left font-semibold">Buying</th>
               <th className="px-6 py-4 text-left font-semibold">Selling</th>
-              <th className="px-6 py-4 text-left font-semibold">UOM</th>
+
               <AdminPermision>
                 <th className="px-6 py-4  font-semibold">Action</th>
               </AdminPermision>
@@ -106,7 +109,7 @@ export default function ProductChart() {
                 <td className="px-6 py-4 text-center">
                   {product.selling_price}
                 </td>
-                <td className="px-6 py-4 text-center">{product.uom}</td>
+
                 <AdminPermision>
                   <td>
                     <span className="flex justify-center mb-8 gap-4">
