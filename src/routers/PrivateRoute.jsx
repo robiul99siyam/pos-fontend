@@ -5,15 +5,20 @@ import Category from "../components/category/Category";
 import Headers from "../components/header/Headers";
 import Products from "../components/product/Products";
 import { useAuth } from "../hooks/useAuth";
+
+import Payment from "../components/Bills/Payment";
 export default function PrivateRoute() {
   const { auth } = useAuth();
 
   const [produtData, setProductData] = useState([]);
+  const [productFilter, setProductFilter] = useState(null);
   const handleProduct = (data) => {
-    // console.log(data);
     setProductData([...produtData, data]);
   };
-  console.log(produtData);
+
+  const handleFilterFunction = (id) => {
+    setProductFilter(id);
+  };
   return (
     <>
       {auth ? (
@@ -28,8 +33,11 @@ export default function PrivateRoute() {
 
                 {/* grid */}
                 <div className="col-span-12 shadow-sm">
-                  <Category />
-                  <Products handleProductDispatch={handleProduct} />
+                  <Category handleFilterFunction={handleFilterFunction} />
+                  <Products
+                    id={productFilter}
+                    handleProductDispatch={handleProduct}
+                  />
                 </div>
               </div>
             </div>
@@ -46,11 +54,7 @@ export default function PrivateRoute() {
               </div>
 
               {/* Fixed Payment Button */}
-              <div className="absolute bottom-0 left-0 w-full">
-                <button className="w-full h-16 bg-primary rounded-lg text-white">
-                  Payment
-                </button>
-              </div>
+              <Payment productData={produtData} />
             </div>
           </div>
         </div>
