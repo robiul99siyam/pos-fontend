@@ -12,11 +12,25 @@ export default function PrivateRoute() {
 
   const [produtData, setProductData] = useState([]);
   const [productFilter, setProductFilter] = useState(null);
+
+  const [qty, setQty] = useState({});
+
+  // PRODUCT HANDLE HERE
   const handleProduct = (data) => {
-    setProductData([...produtData, data]);
+    setQty((prevQty) => ({ ...prevQty, [data.id]: (qty[data.id] || 0) + 1 }));
+
+    const results = produtData.find((prev) => prev?.id === data.id);
+
+    if (!results) {
+      setProductData([...produtData, data]);
+    }
   };
 
+  console.log(qty);
+
+  // PRODUCT FILTER HERE
   const handleFilterFunction = (id) => {
+    console.log(id);
     setProductFilter(id);
   };
   return (
@@ -48,6 +62,7 @@ export default function PrivateRoute() {
               {/* Bills Section */}
               <div className="h-[550px] overflow-y-auto">
                 <Bills
+                  qty={qty}
                   produtData={produtData}
                   setProductData={setProductData}
                 />

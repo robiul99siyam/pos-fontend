@@ -10,7 +10,7 @@ export default function Products({ id, handleProductDispatch }) {
 
   const products = state?.products || [];
   const filteredProducts = id
-    ? products.filter((product) => product.id === id)
+    ? products.filter((product) => product.category?.name === id)
     : products;
 
   const renderProductCard = (product) => (

@@ -1,12 +1,10 @@
 import { MdCancel } from "react-icons/md";
-export default function Bills({ produtData, setProductData }) {
+export default function Bills({ produtData, setProductData, qty }) {
   const handleCancel = (id) => {
     alert(id);
     setProductData((prev) => prev.filter((pro) => pro.id !== id));
   };
-
-  const total = produtData.reduce((acc, item) => acc + item.selling_price, 0);
-
+  // const totalPrice  = produtData.map(())
   return (
     <div className="max-h-[350px] rounded-lg overflow-y-auto ">
       {produtData && produtData.length > 0 ? (
@@ -36,16 +34,11 @@ export default function Bills({ produtData, setProductData }) {
 
             {/* Pricing and Quantity Section */}
             <div className="flex flex-col pl-2  ml-6 col-span-4">
-              <p className="text-gray-600 font-bold">Price: {total}</p>
+              <p className="text-gray-600 font-bold">
+                Price:{product.selling_price * qty[product.id]}
+              </p>
               <div className="flex items-center gap-2 text-gray-900  ">
-                <button className="bg-gray-400 text-white px-2 py-1 rounded-sm">
-                  -
-                </button>
-                <span>10</span>
-                <button className=" bg-primary text-white px-2 py-1 rounded-sm">
-                  +
-                </button>
-
+                <span>{qty[product.id]}</span>
                 <MdCancel
                   onClick={() => handleCancel(product?.id)}
                   className="text-xl"

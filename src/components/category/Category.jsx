@@ -14,7 +14,7 @@ export default function Category({ handleFilterFunction }) {
     <>
       {state?.categorys.map((category) => (
         <button
-          onClick={() => handleFilterFunction(category?.id)}
+          onClick={() => handleFilterFunction(category?.name)}
           key={category?.id}
           className="shadow-md border border-gray-300 m-3 px-6 py-2 rounded-md"
         >
