@@ -1,10 +1,24 @@
 import { MdCancel } from "react-icons/md";
-export default function Bills({ produtData, setProductData, qty }) {
+export default function Bills({ produtData, setProductData, qty, setQty }) {
   const handleCancel = (id) => {
     alert(id);
     setProductData((prev) => prev.filter((pro) => pro.id !== id));
   };
   // const totalPrice  = produtData.map(())
+
+  const handleIncress = (id) => {
+    setQty((prevQty) => ({
+      ...prevQty,
+      [id]: (prevQty[id] || 0) + 1,
+    }));
+  };
+  const handleDecrease = (id) => {
+    setQty((prevQty) => ({
+      ...prevQty,
+      [id]: Math.max((prevQty[id] || 0) - 1, 0),
+    }));
+  };
+
   return (
     <div className="max-h-[350px] rounded-lg overflow-y-auto ">
       {produtData && produtData.length > 0 ? (
@@ -38,7 +52,19 @@ export default function Bills({ produtData, setProductData, qty }) {
                 Price:{product.selling_price * qty[product.id]}
               </p>
               <div className="flex items-center gap-2 text-gray-900  ">
+                <button
+                  onClick={() => handleIncress(product.id)}
+                  className="px-[4px] rounded-md text-white bg-primary"
+                >
+                  +
+                </button>
                 <span>{qty[product.id]}</span>
+                <button
+                  onClick={() => handleDecrease(product.id)}
+                  className="px-[6px] rounded-md text-white bg-rose-700"
+                >
+                  -
+                </button>
                 <MdCancel
                   onClick={() => handleCancel(product?.id)}
                   className="text-xl"

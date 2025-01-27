@@ -26,8 +26,6 @@ export default function PrivateRoute() {
     }
   };
 
-  console.log(qty);
-
   // PRODUCT FILTER HERE
   const handleFilterFunction = (id) => {
     console.log(id);
@@ -63,6 +61,7 @@ export default function PrivateRoute() {
               <div className="h-[550px] overflow-y-auto">
                 <Bills
                   qty={qty}
+                  setQty={setQty}
                   produtData={produtData}
                   setProductData={setProductData}
                 />
