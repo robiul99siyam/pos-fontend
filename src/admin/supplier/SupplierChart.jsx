@@ -14,9 +14,9 @@ export default function SupplierChart() {
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
           {/* Table Header */}
-          <thead className="bg-gray-100">
+          <thead className="border-b">
             <tr>
-              <th className="px-6 py-4 text-left font-semibold">
+              <th className="px-6 py-4  text-left font-semibold">
                 Supplier Name
               </th>
               <th className="px-6 py-4 text-left font-semibold">Contact</th>

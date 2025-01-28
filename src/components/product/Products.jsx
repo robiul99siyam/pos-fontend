@@ -17,7 +17,7 @@ export default function Products({ id, handleProductDispatch }) {
     <div
       key={product.id}
       onClick={() => handleProductDispatch(product)}
-      className="p-2 h-auto border border-gray-300 hover:shadow-lg rounded-md hover:border-gray-500 transition duration-300"
+      className="p-2 h-auto  rounded-md border border-gray-700 transition duration-300"
     >
       <img
         src={
@@ -28,14 +28,14 @@ export default function Products({ id, handleProductDispatch }) {
         className="w-full h-[100px] object-cover rounded-md"
         alt={product.name}
       />
-      <p className="text-sm font-semibold text-start mt-2">
-        {product.name.slice(0, 30)}...
+      <p className="text-sm font-semibold  m-1 text-start">
+        {product.name.slice(0, 24)}..
       </p>
       <div className="flex flex-wrap items-center mt-[2px]">
         {product.sizes.map((size) => (
           <span
             key={size}
-            className="text-xs font-medium text-white bg-primary px-3 py-1 mr-[2px] mb-[2px] rounded-full"
+            className="text-xs font-medium  border border-lwsGreen px-3 py-1 mr-[2px] mb-[2px] rounded-full"
           >
             {size}
           </span>

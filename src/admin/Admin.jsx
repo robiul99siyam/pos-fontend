@@ -7,7 +7,7 @@ export default function Admin() {
   const location = useLocation();
 
   return (
-    <main className="bg-gray-100 min-h-screen flex">
+    <main className="min-h-screen flex">
       <SideBar />
       <div className="flex-grow p-10">
         <header className="mb-8 flex justify-between">

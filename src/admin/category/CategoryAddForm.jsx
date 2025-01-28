@@ -57,7 +57,7 @@ export default function CategoryAddForm() {
               type="text"
               id="name"
               placeholder="Enter category name"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-primary focus:ring-primary focus:outline-none"
+              className="w-full rounded-md border bg-gray-600 border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-primary focus:ring-primary focus:outline-none"
             />
           </Field>
         </div>
@@ -73,14 +73,14 @@ export default function CategoryAddForm() {
               })}
               type="file"
               id="upload_file"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-primary focus:ring-primary focus:outline-none"
+              className="w-full rounded-md bg-slate-600 border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-primary focus:ring-primary focus:outline-none"
             />
           </Field>
         </div>
 
         <button
           type="submit"
-          className="w-full bg-primary text-white py-2 rounded-md shadow hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          className="w-full bg-lwsGreen text-white py-2 rounded-md shadow hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         >
           Submit
         </button>

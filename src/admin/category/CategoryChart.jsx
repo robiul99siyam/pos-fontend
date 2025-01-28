@@ -24,7 +24,7 @@ export default function CategoryChart() {
     shadow"
     >
       <div className="table w-full">
-        <div className="table-header-group bg-primary text-white">
+        <div className="table-header-group ">
           <div className="table-row">
             <div className="table-cell text-left border border-gray-400 px-4 py-2">
               Id

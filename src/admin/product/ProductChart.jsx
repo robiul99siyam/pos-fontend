@@ -48,19 +48,19 @@ export default function ProductChart() {
       <AdminPermision>
         <Link
           to="add-product"
-          className="bg-primary  ml-auto text-white px-2 py-2 rounded-md"
+          className="ml-auto text-white px-2 py-2 rounded-md"
         >
           {" "}
           Add Product +{" "}
         </Link>
       </AdminPermision>
       <div
-        className="w-full max-h-96 mt-10 sm:overflow-x-auto overflow-y-auto border border-gray-300 rounded-lg 
+        className="w-full max-h-96 mt-10 sm:overflow-x-auto overflow-y-auto border border-gray-600 rounded-lg 
     shadow"
       >
         <table className="min-w-full table-auto">
           {/* Table Header */}
-          <thead className="bg-gray-100">
+          <thead className="border-b border-gray-600">
             <tr>
               <th className="px-6 py-4 text-left font-semibold">
                 Product Name
@@ -79,7 +79,7 @@ export default function ProductChart() {
           {/* Table Body */}
           <tbody>
             {state?.products.map((product) => (
-              <tr key={product.id} className="transition duration-1000">
+              <tr key={product.id} className="border-b border-gray-600">
                 <td className="px-6 py-4 flex items-center gap-3">
                   <img
                     src={

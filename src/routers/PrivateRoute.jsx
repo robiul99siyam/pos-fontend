@@ -8,11 +8,11 @@ import { useAuth } from "../hooks/useAuth";
 
 import Payment from "../components/Bills/Payment";
 export default function PrivateRoute() {
-  const { auth } = useAuth();
+  const [subTotal, setSubTotal] = useState(0);
 
+  const { auth } = useAuth();
   const [produtData, setProductData] = useState([]);
   const [productFilter, setProductFilter] = useState(null);
-
   const [qty, setQty] = useState({});
 
   // PRODUCT HANDLE HERE
@@ -31,6 +31,7 @@ export default function PrivateRoute() {
     console.log(id);
     setProductFilter(id);
   };
+
   return (
     <>
       {auth ? (
@@ -56,7 +57,9 @@ export default function PrivateRoute() {
 
             {/* grid cols - 4 */}
             <div className="col-span-4 relative h-full">
-              <h1 className="font-semibold text-xl">Bills</h1>
+              <h1 className="font-semibold text-xl text-gray-400">
+                Products added yet
+              </h1>
               {/* Bills Section */}
               <div className="h-[550px] overflow-y-auto">
                 <Bills
@@ -64,11 +67,12 @@ export default function PrivateRoute() {
                   setQty={setQty}
                   produtData={produtData}
                   setProductData={setProductData}
+                  setSubTotal={setSubTotal}
                 />
               </div>
 
               {/* Fixed Payment Button */}
-              <Payment productData={produtData} />
+              <Payment productData={produtData} qty={qty} />
             </div>
           </div>
         </div>

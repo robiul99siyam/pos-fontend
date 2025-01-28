@@ -7,7 +7,7 @@ export default function SideBar() {
   const { username, image } = auth.user;
 
   return (
-    <aside className="w-64 bg-primary p-6 flex flex-col">
+    <aside className="w-64 border-r border-gray-600  shadow-lg p-6 flex flex-col">
       <div className="mb-10">
         <Link to="/deshboard">
           <i className="text-5xl font-extrabold text-white">POS</i>
@@ -18,7 +18,7 @@ export default function SideBar() {
           <li>
             <Link
               to="supplier"
-              className="block py-2 px-4 rounded-lg text-gray-100 hover:bg-gray-100 hover:text-primary"
+              className="block py-2 px-4 rounded-lg hover:text-gray-800  hover:bg-gray-100"
             >
               Supplier
             </Link>
@@ -27,7 +27,7 @@ export default function SideBar() {
           <li>
             <Link
               to="add-category"
-              className="block py-2 px-4 rounded-lg text-gray-100 hover:bg-gray-100 hover:text-primary"
+              className="block py-2 px-4 rounded-lg hover:text-gray-800  hover:bg-gray-100"
             >
               Category
             </Link>
@@ -36,7 +36,7 @@ export default function SideBar() {
           <li>
             <Link
               to="add-product"
-              className="block py-2 px-4 rounded-lg text-gray-100 hover:bg-gray-100 hover:text-primary"
+              className="block py-2 px-4 rounded-lg hover:text-gray-800  hover:bg-gray-100"
             >
               Product
             </Link>
@@ -45,7 +45,7 @@ export default function SideBar() {
           <li>
             <a
               href="#"
-              className="block py-2 px-4 rounded-lg text-gray-100 hover:bg-gray-100 hover:text-primary"
+              className="block py-2 px-4 rounded-lg hover:text-gray-800  hover:bg-gray-100 "
             >
               Logout
             </a>
@@ -64,7 +64,7 @@ export default function SideBar() {
             className="w-10 h-10 rounded-full mr-3 object-cover"
           />
         </Link>
-        <span className="text-white font-semibold">{username}</span>
+        <span className="font-semibold">{username}</span>
       </div>
     </aside>
   );

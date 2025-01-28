@@ -1,10 +1,10 @@
+import { FaShopify } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 export default function Bills({ produtData, setProductData, qty, setQty }) {
   const handleCancel = (id) => {
     alert(id);
     setProductData((prev) => prev.filter((pro) => pro.id !== id));
   };
-  // const totalPrice  = produtData.map(())
 
   const handleIncress = (id) => {
     setQty((prevQty) => ({
@@ -25,7 +25,7 @@ export default function Bills({ produtData, setProductData, qty, setQty }) {
         produtData.map((product) => (
           <div
             key={product.id}
-            className="w-auto shadow-sm rounded-md  border p-2 m-1 grid grid-cols-12"
+            className="w-auto shadow-sm rounded-md  shadow-gray-500 p-2 m-2 grid grid-cols-12"
           >
             {/* Image Section */}
             <img
@@ -40,21 +40,19 @@ export default function Bills({ produtData, setProductData, qty, setQty }) {
 
             {/* Details Section */}
             <div className="flex flex-col pl-2 col-span-5">
-              <p className="text-gray-600 font-bold">
-                {product?.name?.slice(0, 20)}
-              </p>
-              <p className="text-gray-400">{product?.category?.name}</p>
+              <p className="font-bold">{product?.name?.slice(0, 20)}</p>
+              <p>{product?.category?.name}</p>
             </div>
 
             {/* Pricing and Quantity Section */}
             <div className="flex flex-col pl-2  ml-6 col-span-4">
-              <p className="text-gray-600 font-bold">
+              <p className="font-bold">
                 Price:{product.selling_price * qty[product.id]}
               </p>
               <div className="flex items-center gap-2 text-gray-900  ">
                 <button
                   onClick={() => handleIncress(product.id)}
-                  className="px-[4px] rounded-md text-white bg-primary"
+                  className="px-[4px] rounded-md text-white bg-lwsGreen"
                 >
                   +
                 </button>
@@ -75,7 +73,8 @@ export default function Bills({ produtData, setProductData, qty, setQty }) {
         ))
       ) : (
         <>
-          <div className="p-4 text-center text-gray-500">
+          <div className="p-4 text-center text-gray-500 flex flex-col gap-10 mt-10 justify-center  items-center">
+            <FaShopify className="text-9xl text-lwsGreen" />
             No products added yet.
           </div>
         </>

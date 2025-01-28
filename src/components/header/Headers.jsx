@@ -1,6 +1,5 @@
 import { IoSearchSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import logoImage from "../../assets/logo.png";
 import { useAuth } from "../../hooks/useAuth";
 export default function Headers() {
   const { auth } = useAuth();
@@ -11,7 +10,7 @@ export default function Headers() {
     <div className="flex items-center space-x-10 ">
       {/* Logo Section */}
       <div>
-        <img src={logoImage} className="w-14" alt="Logo" />
+        <h1 className="font-serif text-2xl font-bold">POS</h1>
       </div>
 
       {/* Search Section */}
@@ -37,7 +36,7 @@ export default function Headers() {
                 ? `${import.meta.env.VITE_SERVER_BASE_URL}${image}`
                 : "https://via.placeholder.com/150"
             }
-            className="w-12 h-12 rounded-full border border-primary"
+            className="w-12 h-12 rounded-full border-2 border-lwsGreen"
             alt=""
           />
         </Link>
