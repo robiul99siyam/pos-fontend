@@ -35,7 +35,7 @@ export default function SideBar() {
 
           <li>
             <Link
-              to="add-product"
+              to="product"
               className="block py-2 px-4 rounded-lg hover:text-gray-800  hover:bg-gray-100"
             >
               Product

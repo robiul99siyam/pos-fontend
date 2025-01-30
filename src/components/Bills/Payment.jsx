@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 
+import PaymentModel from "../Bills/PaymentModal.jsx";
 export default function Payment({ productData, qty }) {
-  console.log(qty);
-  console.log(productData);
-
+  const [show, setShow] = useState(false);
   const { auth } = useAuth();
   const Total = productData.reduce(
     (sum, item) => sum + item.selling_price * qty[item.id],
@@ -25,9 +24,20 @@ export default function Payment({ productData, qty }) {
             <div className="col-span-3 text-right"></div>
           </div>
 
-          <button className="w-full h-16 bg-lwsGreen text-white rounded-lg font-bold shadow-lg hover:bg-green-400 hover:shadow-xl transition">
+          <button
+            onClick={() => setShow(true)}
+            className="w-full h-16 bg-lwsGreen text-white rounded-lg font-bold shadow-lg hover:bg-green-400 hover:shadow-xl transition"
+          >
             Payment
           </button>
+
+          {show && (
+            <PaymentModel
+              productData={productData}
+              qty={qty}
+              setShow={setShow}
+            />
+          )}
         </div>
       )}
     </>

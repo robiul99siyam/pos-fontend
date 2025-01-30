@@ -48,7 +48,7 @@ export default function ProductChart() {
       <AdminPermision>
         <Link
           to="add-product"
-          className="ml-auto text-white px-2 py-2 rounded-md"
+          className="ml-auto bg-lwsGreen text-white px-2 py-2 rounded-md"
         >
           {" "}
           Add Product +{" "}

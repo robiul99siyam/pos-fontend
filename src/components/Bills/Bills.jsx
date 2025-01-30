@@ -1,5 +1,5 @@
 import { FaShopify } from "react-icons/fa";
-import { MdCancel } from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
 export default function Bills({ produtData, setProductData, qty, setQty }) {
   const handleCancel = (id) => {
     alert(id);
@@ -40,32 +40,34 @@ export default function Bills({ produtData, setProductData, qty, setQty }) {
 
             {/* Details Section */}
             <div className="flex flex-col pl-2 col-span-5">
-              <p className="font-bold">{product?.name?.slice(0, 20)}</p>
+              <p className="font-bold">{product?.name?.slice(0, 15)}...</p>
               <p>{product?.category?.name}</p>
             </div>
 
             {/* Pricing and Quantity Section */}
-            <div className="flex flex-col pl-2  ml-6 col-span-4">
+            <div className="flex flex-col pl-2  ml-6 mb-2 col-span-4">
               <p className="font-bold">
                 Price:{product.selling_price * qty[product.id]}
               </p>
               <div className="flex items-center gap-2 text-gray-900  ">
                 <button
                   onClick={() => handleIncress(product.id)}
-                  className="px-[4px] rounded-md text-white bg-lwsGreen"
+                  className="px-[6px] rounded-md text-white bg-lwsGreen"
                 >
                   +
                 </button>
-                <span>{qty[product.id]}</span>
+                <span className="text-white text-[16px] font-bold">
+                  {qty[product.id]}
+                </span>
                 <button
                   onClick={() => handleDecrease(product.id)}
-                  className="px-[6px] rounded-md text-white bg-rose-700"
+                  className="px-[8px] rounded-md text-white bg-rose-700"
                 >
                   -
                 </button>
-                <MdCancel
+                <RiDeleteBin6Line
                   onClick={() => handleCancel(product?.id)}
-                  className="text-xl"
+                  className="text-xl text-gray-50"
                 />
               </div>
             </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import SideBar from "./SideBar";
-import ProductChart from "./product/ProductChart";
 
 export default function Admin() {
   const location = useLocation();
@@ -16,7 +15,7 @@ export default function Admin() {
 
         {location.pathname === "/deshboard" && (
           <div className="mt-4">
-            <ProductChart />
+            <h1>hi</h1>
           </div>
         )}
 
