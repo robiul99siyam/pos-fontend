@@ -19,6 +19,10 @@ export default function Bills({ produtData, setProductData, qty, setQty }) {
     }));
   };
 
+  const handlePrice = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <div className="max-h-[350px] rounded-lg overflow-y-auto ">
       {produtData && produtData.length > 0 ? (
@@ -49,6 +53,7 @@ export default function Bills({ produtData, setProductData, qty, setQty }) {
               <p className="font-bold">
                 Price:{product.selling_price * qty[product.id]}
               </p>
+
               <div className="flex items-center gap-2 text-gray-900  ">
                 <button
                   onClick={() => handleIncress(product.id)}

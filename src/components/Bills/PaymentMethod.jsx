@@ -45,7 +45,7 @@ export default function PaymentMethod({
         console.log(response.data);
 
         if (response.status === 200) {
-          navigate("/deshboard/product");
+          navigate("/deshboard");
         }
       }
     } catch (error) {
