@@ -1,7 +1,12 @@
 import React from "react";
 import PaymentMethod from "./PaymentMethod";
 
-export default function ProductModal({ setShow, qty, productData }) {
+export default function ProductModal({
+  setShow,
+  qty,
+  productData,
+  setProductData,
+}) {
   return (
     <div
       className="fixed inset-0 flex items-center justify-center z-50 bg-black/60 backdrop-blur-sm"
@@ -24,7 +29,12 @@ export default function ProductModal({ setShow, qty, productData }) {
           Choose a payment method to proceed.
         </p>
 
-        <PaymentMethod setShow={setShow} productData={productData} qty={qty} />
+        <PaymentMethod
+          setProductData={setProductData}
+          setShow={setShow}
+          productData={productData}
+          qty={qty}
+        />
       </div>
     </div>
   );

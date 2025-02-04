@@ -28,7 +28,6 @@ export default function PrivateRoute() {
 
   // PRODUCT FILTER HERE
   const handleFilterFunction = (id) => {
-    console.log(id);
     setProductFilter(id);
   };
 
@@ -67,12 +66,15 @@ export default function PrivateRoute() {
                   setQty={setQty}
                   produtData={produtData}
                   setProductData={setProductData}
-                  setSubTotal={setSubTotal}
                 />
               </div>
 
               {/* Fixed Payment Button */}
-              <Payment productData={produtData} qty={qty} />
+              <Payment
+                productData={produtData}
+                qty={qty}
+                setProductData={setProductData}
+              />
             </div>
           </div>
         </div>
