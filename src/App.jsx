@@ -6,6 +6,7 @@ import AddProdcut from "./admin/product/AddProduct";
 import AdminProduct from "./admin/product/AdminProducts.jsx";
 import Supplier from "./admin/supplier/Supplier";
 import SupplierAdd from "./admin/supplier/SupplierAdd";
+import Invoice from "./components/Bills/Invoice.jsx";
 import LoginPage from "./components/pages/LoginPage";
 import PrivateRoute from "./routers/PrivateRoute";
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
           <Route element={<SupplierAdd />} path="add-supplier" />
           <Route element={<CateogryAdd />} path="add-category" />
         </Route>
+        <Route element={<Invoice />} path="/Invoice" />
       </Routes>
     </>
   );

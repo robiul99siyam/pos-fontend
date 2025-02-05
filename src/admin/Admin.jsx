@@ -4,6 +4,7 @@ import { api } from "../api";
 import SideBar from "./SideBar";
 import LineChart from "./chart/LineChart";
 import ProfitChart from "./chart/ProfitChart";
+import TableChart from "./chart/TableChart";
 
 export default function Admin() {
   const location = useLocation();
@@ -41,17 +42,22 @@ export default function Admin() {
         </header>
 
         {location.pathname === "/deshboard" && (
-          <div className="grid grid-cols-12 justify-center items-start">
-            <div className="col-span-8">
-              <LineChart transactionData={transactionData} />
+          <>
+            <div className="grid grid-cols-12 justify-center items-start">
+              <div className="col-span-8">
+                <LineChart transactionData={transactionData} />
+              </div>
+              <div className="col-span-4">
+                <ProfitChart
+                  transactionData={transactionData}
+                  loading={loading}
+                />
+              </div>
             </div>
-            <div className="col-span-4">
-              <ProfitChart
-                transactionData={transactionData}
-                loading={loading}
-              />
+            <div>
+              <TableChart transactionData={transactionData} />
             </div>
-          </div>
+          </>
         )}
 
         <Outlet />

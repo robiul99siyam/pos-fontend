@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Field from "../../Form/Field";
 import { api } from "../../api";
+import Invoice from "./Invoice";
 
 export default function PaymentMethod({
   setShow,
@@ -45,7 +46,7 @@ export default function PaymentMethod({
         console.log(response.data);
 
         if (response.status === 200) {
-          navigate("/deshboard");
+          navigate("/Invoice");
         }
       }
     } catch (error) {
@@ -93,6 +94,10 @@ export default function PaymentMethod({
         >
           Confirm Payment
         </button>
+
+        <div className="hidden">
+          <Invoice qty={qty} productData={productData} />
+        </div>
       </form>
     </>
   );
