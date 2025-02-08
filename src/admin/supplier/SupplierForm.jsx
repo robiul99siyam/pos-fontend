@@ -21,7 +21,7 @@ export default function SupplierForm({
                 type="text"
                 id="name"
                 placeholder="Supplier Name"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full rounded-md  border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               />
             </Field>
           </div>
@@ -37,7 +37,7 @@ export default function SupplierForm({
                 type="text"
                 id="contact"
                 placeholder="Contact"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full  rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               />
             </Field>
           </div>
@@ -56,7 +56,7 @@ export default function SupplierForm({
                 type="email"
                 id="email"
                 placeholder="Email"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full  rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               />
             </Field>
           </div>
@@ -70,7 +70,7 @@ export default function SupplierForm({
                 })}
                 id="address"
                 placeholder="Address"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full  rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               />
             </Field>
           </div>
@@ -86,7 +86,7 @@ export default function SupplierForm({
                 })}
                 type="file"
                 id="upload_file"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full  rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               />
             </Field>
           </div>
@@ -94,7 +94,7 @@ export default function SupplierForm({
 
         <button
           type="submit"
-          className="bg-primary px-8 w-[20%] block m-auto py-2 mt-1 text-white rounded-md"
+          className="bg-lwsGreen w-full px-8  block m-auto py-2 mt-1 text-white rounded-md"
         >
           Submit
         </button>

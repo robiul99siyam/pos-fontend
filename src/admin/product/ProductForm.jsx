@@ -29,7 +29,7 @@ export default function ProductForm({
                 type="text"
                 id="name"
                 placeholder="Product Name"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-800  shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               />
             </Field>
           </div>
@@ -49,7 +49,7 @@ export default function ProductForm({
                 type="number"
                 id="selling_price"
                 placeholder="Selling Price"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-800  shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               />
             </Field>
           </div>
@@ -65,7 +65,7 @@ export default function ProductForm({
                 type="number"
                 id="supplier_id"
                 placeholder="supplier Name"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-800  shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               >
                 <option value="" disabled selected>
                   Select a category
@@ -88,7 +88,7 @@ export default function ProductForm({
                   required: "Category name is required",
                 })}
                 id="category_id"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-800  shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               >
                 <option value="" disabled selected>
                   Select a category
@@ -118,7 +118,7 @@ export default function ProductForm({
                 type="number"
                 id="stock"
                 placeholder="Stock"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-800  shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               />
             </Field>
           </div>
@@ -138,7 +138,7 @@ export default function ProductForm({
                 type="number"
                 id="cost_price"
                 placeholder="Cost Price"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-800  shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               />
             </Field>
           </div>
@@ -150,7 +150,7 @@ export default function ProductForm({
                 {...register("sizes", { required: "Sizes is Required" })}
                 id="sizes"
                 multiple
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-800  shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               >
                 <option value="S">Small</option>
                 <option value="M">Medium</option>
@@ -173,7 +173,7 @@ export default function ProductForm({
                 })}
                 type="file"
                 id="upload_file"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-800  shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               />
             </Field>
           </div>
@@ -184,7 +184,7 @@ export default function ProductForm({
                 {...register("description")}
                 type="text"
                 id="description"
-                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
+                className="w-full rounded-md border border-gray-600 px-3 py-2 placeholder-gray-800  shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"
               />
             </Field>
           </div>
@@ -192,7 +192,7 @@ export default function ProductForm({
 
         <button
           type="submit"
-          className="bg-primary px-8 w-[20%] block m-auto py-2 mt-1 text-white rounded-md"
+          className="bg-lwsGreen px-8 w-1/2 block m-auto py-2 mt-1 text-deepDark rounded-md"
         >
           {product ? "Update" : "Submit"}
         </button>

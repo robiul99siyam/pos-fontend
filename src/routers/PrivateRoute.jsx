@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import Bills from "../components/Bills/Bills";
 import Category from "../components/category/Category";
@@ -6,15 +6,14 @@ import Headers from "../components/header/Headers";
 import Products from "../components/product/Products";
 import { useAuth } from "../hooks/useAuth";
 
+import { api } from "../api";
 import Payment from "../components/Bills/Payment";
 export default function PrivateRoute() {
-  const [subTotal, setSubTotal] = useState(0);
-
   const { auth } = useAuth();
   const [produtData, setProductData] = useState([]);
-  const [productFilter, setProductFilter] = useState(null);
+  const [productFilter, setProductFilter] = useState("");
   const [qty, setQty] = useState({});
-
+  const [fetchOpenCash, setFectchOpenCash] = useState([]);
   // PRODUCT HANDLE HERE
   const handleProduct = (data) => {
     setQty((prevQty) => ({ ...prevQty, [data.id]: (qty[data.id] || 0) + 1 }));
@@ -31,25 +30,46 @@ export default function PrivateRoute() {
     setProductFilter(id);
   };
 
+  // opening cash get
+  useEffect(() => {
+    const fetchTheCash = async () => {
+      const response = await api.get(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/cash`
+      );
+
+      if (response.status === 200) {
+        setFectchOpenCash(response.data);
+      }
+    };
+
+    fetchTheCash();
+  }, []);
+
+  // console.log(openCash);
   return (
     <>
       {auth ? (
-        <div className="mx-2 my-5 font-serif">
+        <div className="mx-5 my-5 font-serif">
           {/* grid */}
           <div className="grid grid-cols-12 gap-2">
             {/* grid col-span-8 */}
             <div className="col-span-8">
-              <Headers />
+              <Headers fetchOpenCash={fetchOpenCash} />
               <div className="grid grid-cols-12">
                 {/* grid */}
 
                 {/* grid */}
                 <div className="col-span-12 shadow-sm">
-                  <Category handleFilterFunction={handleFilterFunction} />
-                  <Products
-                    id={productFilter}
-                    handleProductDispatch={handleProduct}
+                  <Category
+                    setProductFilter={setProductFilter}
+                    handleFilterFunction={handleFilterFunction}
                   />
+                  <div className="w-full h-auto mt-10 overflow-y-auto sm:overflow-x-auto rounded-lg shadow">
+                    <Products
+                      id={productFilter}
+                      handleProductDispatch={handleProduct}
+                    />
+                  </div>
                 </div>
               </div>
             </div>

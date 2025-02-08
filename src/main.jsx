@@ -7,6 +7,7 @@ import { AuthProvider } from "./provider/AuthProvider.jsx";
 import CategroyProvider from "./provider/CategroyProvider.jsx";
 import ProductProvider from "./provider/ProductProvider.jsx";
 import { SupplierProvider } from "./provider/SupplierProvider.jsx";
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>

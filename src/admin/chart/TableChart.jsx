@@ -1,10 +1,18 @@
 import { useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function TableChart({ transactionData }) {
   const [selectedDate, setSelectedDate] = useState("");
   const filteringDate = selectedDate
     ? transactionData.filter((trans) => trans.date === selectedDate)
     : transactionData;
+
+  console.log(filteringDate);
+
+  const { auth } = useAuth();
+  const user = auth?.user?.id;
+
+  const userRole = auth?.user?.role;
   return (
     <>
       {/* Date Filter */}
@@ -38,6 +46,9 @@ export default function TableChart({ transactionData }) {
                 payment method
               </th>
               <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
+                Qty
+              </th>
+              <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
                 profit
               </th>
               <th className="px-6 py-4 text-left font-semibold text-rose-600">
@@ -52,30 +63,38 @@ export default function TableChart({ transactionData }) {
           {/* Table Body */}
           <tbody>
             {filteringDate &&
-              filteringDate?.map((trans) => (
-                <tr key={trans.id} className="border-b border-gray-600">
-                  <td className="px-2 text-start py-2 ">
-                    {trans?.product?.name}
-                  </td>
-                  <td className="px-6 py-2 text-center">
-                    {trans.payment_method}
-                  </td>
-                  <td className="px-6 py-2 text-center">{trans.profit}</td>
-                  <td
-                    className={`${
-                      trans.loss === 0
-                        ? "px-6 py-2 text-center "
-                        : "text-rose-600 px-6 py-2 text-center"
-                    }`}
-                  >
-                    {trans.loss}
-                  </td>
-                  <td className="px-6 py-2 text-center">
-                    {trans.current_cash}
-                  </td>
-                  <td className="px-6 py-2 text-center">{trans.date}</td>
-                </tr>
-              ))}
+              filteringDate?.map((trans) => {
+                if (userRole === "admin" || user === trans?.user?.id) {
+                  return (
+                    <tr key={trans.id} className="border-b border-gray-600">
+                      <td className="px-2 text-start py-2 ">
+                        {trans?.product?.name}
+                      </td>
+                      <td className="px-6 py-2 text-center">
+                        {trans.payment_method}
+                      </td>
+                      <td className="px-6 py-2 text-center">
+                        {trans.quantity}
+                      </td>
+                      <td className="px-6 py-2 text-center">{trans.profit}</td>
+                      <td
+                        className={`${
+                          trans.loss === 0
+                            ? "px-6 py-2 text-center "
+                            : "text-rose-600 px-6 py-2 text-center"
+                        }`}
+                      >
+                        {trans.loss}
+                      </td>
+                      <td className="px-6 py-2 text-center">
+                        {trans.current_cash}
+                      </td>
+                      <td className="px-6 py-2 text-center">{trans.date}</td>
+                    </tr>
+                  );
+                }
+                return null; // to skip the non-admin users' transactions in admin view  // this will improve performance by reducing unnecessary renders
+              })}
           </tbody>
         </table>
       </div>

@@ -1,11 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 export default function SideBar() {
   const { auth } = useAuth();
   const { username, image } = auth.user;
-
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.clear("auth");
+    navigate("/login");
+  };
   return (
     <aside className="w-64 border-r border-gray-600  shadow-lg p-6 flex flex-col">
       <div className="mb-10">
@@ -44,7 +48,7 @@ export default function SideBar() {
 
           <li>
             <a
-              href="#"
+              onClick={logout}
               className="block py-2 px-4 rounded-lg hover:text-gray-800  hover:bg-gray-100 "
             >
               Logout

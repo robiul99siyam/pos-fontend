@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { api } from "../api";
+import { AdminPermision } from "./AdminPermision";
 import SideBar from "./SideBar";
 import LineChart from "./chart/LineChart";
 import ProfitChart from "./chart/ProfitChart";
@@ -44,15 +45,17 @@ export default function Admin() {
         {location.pathname === "/deshboard" && (
           <>
             <div className="grid grid-cols-12 justify-center items-start">
-              <div className="col-span-8">
-                <LineChart transactionData={transactionData} />
-              </div>
-              <div className="col-span-4">
-                <ProfitChart
-                  transactionData={transactionData}
-                  loading={loading}
-                />
-              </div>
+              <AdminPermision>
+                <div className="col-span-8">
+                  <LineChart transactionData={transactionData} />
+                </div>
+                <div className="col-span-4">
+                  <ProfitChart
+                    transactionData={transactionData}
+                    loading={loading}
+                  />
+                </div>
+              </AdminPermision>
             </div>
             <div>
               <TableChart transactionData={transactionData} />

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Field from "../../Form/Field";
 import { api } from "../../api";
+import { useAuth } from "../../hooks/useAuth";
 import Invoice from "./Invoice";
 
 export default function PaymentMethod({
@@ -19,18 +20,26 @@ export default function PaymentMethod({
   } = useForm();
 
   const navigate = useNavigate();
+  const { auth } = useAuth();
 
   const submitForm = async (data) => {
     try {
       for (const product of productData) {
         const formData = new FormData();
-        formData.append("user_id", 1);
+        formData.append("user_id", auth?.user?.id);
         formData.append("product_id", product.id);
         formData.append("quantity", qty[product.id]);
         formData.append("unit_price", parseFloat(product.selling_price));
         formData.append("subtotal", product.selling_price * qty[product.id]);
         formData.append("customer_id", 1);
         formData.append("payment_method", data.payment_method);
+
+        if (new Date() < new Date(data.date)) {
+          alert(
+            "Sorry, the selected date is in the past. Please choose a valid date."
+          );
+          return;
+        }
         formData.append("date", data.date || "");
         // console.log(formData);
         const response = await api.post(
@@ -46,7 +55,7 @@ export default function PaymentMethod({
         console.log(response.data);
 
         if (response.status === 200) {
-          navigate("/Invoice");
+          navigate("/deshboard");
         }
       }
     } catch (error) {

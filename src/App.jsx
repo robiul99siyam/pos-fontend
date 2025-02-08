@@ -10,6 +10,25 @@ import Invoice from "./components/Bills/Invoice.jsx";
 import LoginPage from "./components/pages/LoginPage";
 import PrivateRoute from "./routers/PrivateRoute";
 export default function App() {
+  const steps = [
+    {
+      selector: ".first_step",
+      content: "Click here to start navigating your dashboard.",
+    },
+    {
+      selector: ".add-product-btn",
+      content: "Use this button to add a new product.",
+    },
+    {
+      selector: ".supplier-section",
+      content: "Here you can manage your suppliers.",
+    },
+    {
+      selector: ".category-section",
+      content: "Manage categories from this section.",
+    },
+  ];
+
   return (
     <>
       <Routes>

@@ -30,7 +30,7 @@ export default function SupplierAdd() {
 
       let response;
       response = await api.post(
-        `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/suppliers/`,
+        `http://127.0.0.1:8000/api/v1/suppliers/`,
         formData,
         {
           headers: {

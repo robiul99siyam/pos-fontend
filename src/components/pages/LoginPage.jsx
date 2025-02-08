@@ -5,7 +5,7 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen">
       {/* <!-- Left side --> */}
-      <div className="hidden lg:flex lg:w-1/2 bg-primary flex-col justify-between p-12 relative">
+      <div className="hidden lg:flex lg:w-1/2 bg-lwsGreen flex-col justify-between p-12 relative">
         <div className="text-white">
           <img src={Saly} alt="Illustration" className="mx-auto" />
 

@@ -1,5 +1,6 @@
 import { ProductFetch } from "../../fetures/ProductFetch";
 import { useProduct } from "../../hooks/useProduct";
+import NoFound from "../pages/NoFound";
 
 export default function Products({ id, handleProductDispatch }) {
   const { state } = useProduct();
@@ -17,7 +18,7 @@ export default function Products({ id, handleProductDispatch }) {
     <div
       key={product.id}
       onClick={() => handleProductDispatch(product)}
-      className="p-2 h-auto  rounded-md border border-gray-700 transition duration-300"
+      className="p-2  rounded-md border border-gray-700 transition duration-300"
     >
       <img
         src={
@@ -45,12 +46,14 @@ export default function Products({ id, handleProductDispatch }) {
   );
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {filteredProducts.length > 0 ? (
-        filteredProducts.map(renderProductCard)
-      ) : (
-        <p>No products found.</p>
-      )}
-    </div>
+    <>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 ">
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map(renderProductCard)
+        ) : (
+          <NoFound />
+        )}
+      </div>
+    </>
   );
 }

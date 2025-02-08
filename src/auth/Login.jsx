@@ -67,7 +67,7 @@ export default function LoginForm() {
       </Field>
       <button
         type="submit"
-        className="w-full bg-primary text-white py-3 mt-3 rounded-lg mb-4"
+        className="w-full bg-lwsGreen text-black  py-3 mt-3 rounded-lg mb-4"
       >
         Sign in
       </button>

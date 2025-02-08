@@ -9,7 +9,7 @@ export default function Supplier() {
       <AdminPermision>
         <Link
           to="add-supplier"
-          className="ml-auto bg-lwsGreen text-white px-2 py-2 rounded-md"
+          className="ml-auto bg-lwsGreen  text-white px-2 py-2 rounded-md"
         >
           {" "}
           Add Supplier +{" "}
