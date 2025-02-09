@@ -11,7 +11,7 @@ export default function SideBar() {
     navigate("/login");
   };
   return (
-    <aside className="w-64 border-r border-gray-600  shadow-lg p-6 flex flex-col">
+    <aside className="w-56 border-r border-gray-600  shadow-lg p-6 flex flex-col">
       <div className="mb-10">
         <Link to="/deshboard">
           <i className="text-5xl font-extrabold text-white">POS</i>

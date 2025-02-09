@@ -91,7 +91,7 @@ export default function AddProduct() {
           data: response.data,
         });
         reset();
-        navigate("/deshboard", { replace: true, product: null });
+        navigate("/deshboard/product", { replace: true, product: null });
       }
       console.log("API Response:", response.data);
     } catch (error) {

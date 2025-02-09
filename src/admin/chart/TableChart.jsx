@@ -37,16 +37,24 @@ export default function TableChart({ transactionData }) {
         className="w-full max-h-96 mt-10 sm:overflow-x-auto overflow-y-auto border border-gray-600 rounded-lg 
       shadow"
       >
-        <table className="min-w-full table-auto">
+        <table className="min-w-full table-auto ">
           {/* Table Header */}
           <thead className="border-b border-gray-600">
             <tr>
-              <th className="px-6 py-4 text-left font-semibold">Name</th>
-              <th className="px-6 py-4 text-left font-semibold">
-                payment method
+              <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
+                Name
               </th>
               <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
+                payment method
+              </th>
+              <th className="px-4 py-4 text-left font-semibold text-lwsGreen">
                 Qty
+              </th>
+              <th className="px-4 py-4 text-left font-semibold text-lwsGreen">
+                u-price
+              </th>
+              <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
+                sub-total
               </th>
               <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
                 profit
@@ -54,10 +62,12 @@ export default function TableChart({ transactionData }) {
               <th className="px-6 py-4 text-left font-semibold text-rose-600">
                 loss
               </th>
-              <th className="px-6 py-4 text-left font-semibold">
-                current cash
+              <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
+                cash
               </th>
-              <th className="px-6 py-4 text-left font-semibold">date</th>
+              <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
+                date{" "}
+              </th>
             </tr>
           </thead>
           {/* Table Body */}
@@ -73,8 +83,14 @@ export default function TableChart({ transactionData }) {
                       <td className="px-6 py-2 text-center">
                         {trans.payment_method}
                       </td>
-                      <td className="px-6 py-2 text-center">
+                      <td className="px-4 py-2 text-center">
                         {trans.quantity}
+                      </td>
+                      <td className="px-4 py-2 text-center">
+                        {trans.unit_price}
+                      </td>
+                      <td className="px-6 py-2 text-center">
+                        {trans.subtotal}
                       </td>
                       <td className="px-6 py-2 text-center">{trans.profit}</td>
                       <td

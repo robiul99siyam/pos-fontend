@@ -6,12 +6,7 @@ import { api } from "../../api";
 import { useAuth } from "../../hooks/useAuth";
 import Invoice from "./Invoice";
 
-export default function PaymentMethod({
-  setShow,
-  productData,
-  qty,
-  setProductData,
-}) {
+export default function PaymentMethod({ productData, qty }) {
   const {
     handleSubmit,
     reset,

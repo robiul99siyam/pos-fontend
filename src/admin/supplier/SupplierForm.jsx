@@ -32,9 +32,9 @@ export default function SupplierForm({
               <input
                 {...register("contact", {
                   required: "Contact is Required",
-                  value: 10,
+                  value: 0,
                 })}
-                type="text"
+                type="number"
                 id="contact"
                 placeholder="Contact"
                 className="w-full  rounded-md border border-gray-600 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-gray-950 focus:outline-none focus:ring-2 focus:ring-gray-950"

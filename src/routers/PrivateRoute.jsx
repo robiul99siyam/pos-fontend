@@ -14,6 +14,7 @@ export default function PrivateRoute() {
   const [productFilter, setProductFilter] = useState("");
   const [qty, setQty] = useState({});
   const [fetchOpenCash, setFectchOpenCash] = useState([]);
+  const [fectchCloseCash, setFectchCloseCash] = useState([]);
   // PRODUCT HANDLE HERE
   const handleProduct = (data) => {
     setQty((prevQty) => ({ ...prevQty, [data.id]: (qty[data.id] || 0) + 1 }));
@@ -45,7 +46,35 @@ export default function PrivateRoute() {
     fetchTheCash();
   }, []);
 
-  // console.log(openCash);
+  useEffect(() => {
+    const fetchTheCloseCash = async () => {
+      const response = await api.get(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/day-closed/`
+      );
+
+      if (response.status === 200) {
+        setFectchCloseCash(response.data);
+      }
+    };
+
+    fetchTheCloseCash();
+  }, []);
+
+  console.log(fectchCloseCash);
+
+  const userId = auth?.user?.id;
+  const today = new Date().toISOString().split("T")[0];
+
+  const hiddens = fetchOpenCash?.some(
+    (open) =>
+      new Date(open.date).toISOString().split("T")[0] === today &&
+      open.user?.id === userId
+  );
+  const hiddensClosing = fectchCloseCash?.some(
+    (open) =>
+      new Date(open.closure_date).toISOString().split("T")[0] === today &&
+      open.user?.id === userId
+  );
   return (
     <>
       {auth ? (
@@ -54,7 +83,7 @@ export default function PrivateRoute() {
           <div className="grid grid-cols-12 gap-2">
             {/* grid col-span-8 */}
             <div className="col-span-8">
-              <Headers fetchOpenCash={fetchOpenCash} />
+              <Headers hiddens={hiddens} hiddensClosing={hiddensClosing} />
               <div className="grid grid-cols-12">
                 {/* grid */}
 
@@ -91,6 +120,7 @@ export default function PrivateRoute() {
 
               {/* Fixed Payment Button */}
               <Payment
+                hiddensClosing={hiddensClosing}
                 productData={produtData}
                 qty={qty}
                 setProductData={setProductData}

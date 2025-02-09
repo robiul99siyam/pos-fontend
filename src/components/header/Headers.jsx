@@ -1,22 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import Closeding from "../pages/Closeding";
 import Opening from "../pages/Opening";
-export default function Headers({ fetchOpenCash }) {
+export default function Headers({ hiddens, hiddensClosing }) {
   const { auth } = useAuth();
 
   const { image, username, role } = auth.user;
   const [openCash, setOpenCash] = useState(false);
-  const userId = auth?.user?.id;
-  const today = new Date().toISOString().split("T")[0];
-  console.log(today);
-  const hiddens = fetchOpenCash?.some(
-    (open) =>
-      new Date(open.date).toISOString().split("T")[0] === today &&
-      open.user?.id === userId
-  );
+  const [closeCash, setCloseCash] = useState(false);
 
-  console.log(hiddens);
+  console.log(hiddensClosing);
   return (
     <div className="flex items-center space-x-5 ">
       {/* Logo Section */}
@@ -38,9 +32,19 @@ export default function Headers({ fetchOpenCash }) {
       </button>
 
       {openCash && <Opening setOpenCash={setOpenCash} />}
-      <button className="bg-lwsGreen text-white hover:text-gray-200  py-2 px-12 rounded-md">
+      <button
+        onClick={() => setCloseCash(true)}
+        disabled={hiddensClosing}
+        className={`${
+          hiddensClosing
+            ? "cursor-not-allowed bg-lwsGreen text-white hover:text-gray-200  py-2 px-12 rounded-md"
+            : "bg-lwsGreen text-white hover:text-gray-200  py-2 px-12 rounded-md"
+        }`}
+      >
         Day Closed Cash
       </button>
+
+      {closeCash && <Closeding setCloseCash={setCloseCash} />}
       {/* </div>  */}
 
       <div className="flex justify-center gap-5 ">

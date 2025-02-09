@@ -62,14 +62,24 @@ export default function ProductChart() {
           {/* Table Header */}
           <thead className="border-b border-gray-600">
             <tr>
-              <th className="px-6 py-4 text-left font-semibold">
+              <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
                 Product Name
               </th>
-              <th className="px-6 py-4 text-left font-semibold">Category</th>
-              <th className="px-6 py-4 text-left font-semibold">Supplier</th>
-              <th className="px-6 py-4 text-left font-semibold">Stock</th>
-              <th className="px-6 py-4 text-left font-semibold">Buying</th>
-              <th className="px-6 py-4 text-left font-semibold">Selling</th>
+              <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
+                Category
+              </th>
+              <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
+                Supplier
+              </th>
+              <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
+                Stock
+              </th>
+              <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
+                Buying
+              </th>
+              <th className="px-6 py-4 text-left font-semibold text-lwsGreen">
+                Selling
+              </th>
 
               <AdminPermision>
                 <th className="px-6 py-4  font-semibold">Action</th>
@@ -112,7 +122,7 @@ export default function ProductChart() {
 
                 <AdminPermision>
                   <td>
-                    <span className="flex justify-center mb-8 gap-4">
+                    <span className="flex justify-center mb-2 gap-4">
                       <MdOutlineEdit
                         onClick={() => handleEdit(product)}
                         className="text-2xl"

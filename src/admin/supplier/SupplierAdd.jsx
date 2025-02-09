@@ -25,12 +25,12 @@ export default function SupplierAdd() {
       formData.append("upload_file", data.upload_file[0]);
       formData.append("name", data.name);
       formData.append("email", data.email);
-      formData.append("contact", data.contact);
+      formData.append("contact", parseInt(data.contact));
       formData.append("address", data.address);
 
       let response;
       response = await api.post(
-        `http://127.0.0.1:8000/api/v1/suppliers/`,
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/suppliers/`,
         formData,
         {
           headers: {

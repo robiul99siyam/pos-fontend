@@ -16,7 +16,7 @@ export default function LoginForm() {
   const submitForm = async (formData) => {
     try {
       const response = await api.post(
-        "http://127.0.0.1:8000/login/",
+        `${import.meta.env.VITE_SERVER_BASE_URL}/login/`,
         formData,
         {
           headers: {
@@ -67,7 +67,7 @@ export default function LoginForm() {
       </Field>
       <button
         type="submit"
-        className="w-full bg-lwsGreen text-black  py-3 mt-3 rounded-lg mb-4"
+        className="w-full bg-lwsGreen text-white  py-3 mt-3 rounded-lg mb-4"
       >
         Sign in
       </button>

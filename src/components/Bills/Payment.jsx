@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 
 import PaymentModel from "../Bills/PaymentModal.jsx";
-export default function Payment({ productData, qty, setProductData }) {
+export default function Payment({
+  productData,
+  qty,
+  setProductData,
+  hiddensClosing,
+}) {
   const [show, setShow] = useState(false);
   const Total = productData?.reduce(
     (sum, item) => sum + item.selling_price * qty[item.id],
@@ -24,7 +29,12 @@ export default function Payment({ productData, qty, setProductData }) {
 
           <button
             onClick={() => setShow(true)}
-            className="w-full h-16 bg-lwsGreen text-white rounded-lg font-bold shadow-lg hover:bg-green-400 hover:shadow-xl transition"
+            disabled={hiddensClosing}
+            className={`${
+              hiddensClosing
+                ? "w-full h-16 bg-lwsGreen cursor-not-allowed text-white rounded-lg font-bold shadow-lg hover:bg-green-400 hover:shadow-xl transition"
+                : "w-full h-16 bg-lwsGreen  text-white rounded-lg font-bold shadow-lg hover:bg-green-400 hover:shadow-xl transition"
+            }`}
           >
             Payment
           </button>
