@@ -1,13 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { FaSpinner } from "react-icons/fa";
 import { api } from "../../api";
 import Field from "../../Form/Field";
 import { useAuth } from "../../hooks/useAuth";
-
 export default function Opening({ setOpenCash }) {
   const {
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
     reset,
   } = useForm();
@@ -83,10 +83,16 @@ export default function Opening({ setOpenCash }) {
             />
           </Field>
           <button
+            className={`w-full bg-lwsGreen text-white py-3 mt-3 rounded-lg mb-4 transition-all hover:opacity-90 flex items-center justify-center ${
+              isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+            }`}
             type="submit"
-            className="mt-6 w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition"
+            disabled={isSubmitting} // Disable button while loading
           >
-            Submit
+            {isSubmitting && (
+              <FaSpinner className="animate-spin h-5 w-5 mr-3 font-bold" />
+            )}
+            {isSubmitting ? "OPENING CASHING..." : "OPENING CASH"}
           </button>
         </form>
       </div>

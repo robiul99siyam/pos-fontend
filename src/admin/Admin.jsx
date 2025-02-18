@@ -19,7 +19,7 @@ export default function Admin() {
         setLoading(true);
 
         const response = await api.get(
-          "http://127.0.0.1:8000/api/v1/transactions/"
+          `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/transactions/`
         );
 
         if (response.status === 200) {

@@ -8,6 +8,7 @@ import Supplier from "./admin/supplier/Supplier";
 import SupplierAdd from "./admin/supplier/SupplierAdd";
 import Invoice from "./components/Bills/Invoice.jsx";
 import LoginPage from "./components/pages/LoginPage";
+import Register from "./components/pages/Register.jsx";
 import PrivateRoute from "./routers/PrivateRoute";
 export default function App() {
   const steps = [
@@ -33,6 +34,7 @@ export default function App() {
     <>
       <Routes>
         <Route element={<LoginPage />} path="/login" />
+        <Route element={<Register />} path="/register" />
         <Route element={<PrivateRoute />} path="/" />
         <Route element={<Admin />} path="/deshboard">
           <Route path="product">

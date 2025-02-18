@@ -11,7 +11,7 @@ export default function SupplierAdd() {
     handleSubmit,
     register,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm();
 
   const { dispatch } = useSupplier();
@@ -60,6 +60,7 @@ export default function SupplierAdd() {
         submitForm={submitForm}
         register={register}
         errors={errors}
+        isSubmitting={isSubmitting}
       />
     </div>
   );

@@ -1,11 +1,12 @@
 import React from "react";
+import { FaSpinner } from "react-icons/fa6";
 import Field from "../../Form/Field"; // Assuming you have a Field component for consistent form styling
-
 export default function SupplierForm({
   handleSubmit,
   submitForm,
   register,
   errors,
+  isSubmitting,
 }) {
   return (
     <>
@@ -93,10 +94,16 @@ export default function SupplierForm({
         </div>
 
         <button
+          className={`w-full bg-lwsGreen text-white py-3 mt-3 rounded-lg mb-4 transition-all hover:opacity-90 flex items-center justify-center ${
+            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          }`}
           type="submit"
-          className="bg-lwsGreen w-full px-8  block m-auto py-2 mt-1 text-white rounded-md"
+          disabled={isSubmitting} // Disable button while loading
         >
-          Submit
+          {isSubmitting && (
+            <FaSpinner className="animate-spin h-5 w-5 mr-3 font-bold" />
+          )}
+          {isSubmitting ? "ADDING SUPLIERS..." : "ADD TO THE SUPPLIERS"}
         </button>
       </form>
     </>

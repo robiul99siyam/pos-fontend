@@ -1,17 +1,17 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { FaSpinner } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Field from "../../Form/Field";
 import { api } from "../../api";
 import { useAuth } from "../../hooks/useAuth";
 import Invoice from "./Invoice";
-
 export default function PaymentMethod({ productData, qty }) {
   const {
     handleSubmit,
     reset,
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm();
 
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ export default function PaymentMethod({ productData, qty }) {
         formData.append("date", data.date || "");
         // console.log(formData);
         const response = await api.post(
-          "http://127.0.0.1:8000/api/v1/transactions/",
+          `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/transactions/`,
           formData,
           {
             headers: {
@@ -93,12 +93,17 @@ export default function PaymentMethod({ productData, qty }) {
 
         {/* Confirm Button */}
         <button
+          className={`w-full bg-lwsGreen text-white py-3 mt-3 rounded-lg mb-4 transition-all hover:opacity-90 flex items-center justify-center ${
+            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          }`}
           type="submit"
-          className="mt-6 w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition"
+          disabled={isSubmitting} // Disable button while loading
         >
-          Confirm Payment
+          {isSubmitting && (
+            <FaSpinner className="animate-spin h-5 w-5 mr-3 font-bold" />
+          )}
+          {isSubmitting ? "Confirming payment..." : "Confirm"}
         </button>
-
         <div className="hidden">
           <Invoice qty={qty} productData={productData} />
         </div>

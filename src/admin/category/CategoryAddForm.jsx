@@ -1,11 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { FaSpinner } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { actions } from "../../actions";
 import { api } from "../../api";
 import Field from "../../Form/Field";
 import { useCategory } from "../../hooks/useCategory";
-
 export default function CategoryAddForm() {
   const { dispatch } = useCategory();
   const location = useLocation();
@@ -13,7 +13,7 @@ export default function CategoryAddForm() {
   console.log(category);
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     register,
     setValue,
     reset,
@@ -79,10 +79,16 @@ export default function CategoryAddForm() {
         </div>
 
         <button
+          className={`w-full bg-lwsGreen text-white py-3 mt-3 rounded-lg mb-4 transition-all hover:opacity-90 flex items-center justify-center ${
+            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          }`}
           type="submit"
-          className="w-full bg-lwsGreen text-white py-2 rounded-md shadow hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          disabled={isSubmitting} // Disable button while loading
         >
-          Submit
+          {isSubmitting && (
+            <FaSpinner className="animate-spin h-5 w-5 mr-3 font-bold" />
+          )}
+          {isSubmitting ? "ADDING CATEGORY..." : "ADD TO THE CATEGORY"}
         </button>
       </form>
     </>

@@ -1,16 +1,19 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { FaSpinner } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api";
 import Field from "../Form/Field";
 import { useAuth } from "../hooks/useAuth";
+
 export default function LoginForm() {
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm();
 
   const submitForm = async (formData) => {
@@ -65,11 +68,16 @@ export default function LoginForm() {
           placeholder="Password"
         />
       </Field>
+
       <button
+        className={`w-full bg-lwsGreen text-white py-3 mt-3 rounded-lg mb-4 transition-all hover:opacity-90 flex items-center justify-center ${
+          isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+        }`}
         type="submit"
-        className="w-full bg-lwsGreen text-white  py-3 mt-3 rounded-lg mb-4"
+        disabled={isSubmitting} // Disable button while loading
       >
-        Sign in
+        {isSubmitting && <FaSpinner className="animate-spin h-5 w-5 mr-3" />}
+        {isSubmitting ? "Signing..." : "Sign In"}
       </button>
     </form>
   );
