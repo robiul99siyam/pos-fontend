@@ -13,7 +13,7 @@ export default function AddProduct() {
 
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     register,
     setValue,
     reset,
@@ -107,6 +107,7 @@ export default function AddProduct() {
         register={register}
         errors={errors}
         product={product}
+        isSubmitting={isSubmitting}
       />
     </>
   );

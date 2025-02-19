@@ -55,10 +55,10 @@ export default function ProductChart() {
         </Link>
       </AdminPermision>
       <div
-        className="w-full max-h-96 mt-10 sm:overflow-x-auto overflow-y-auto border border-gray-600 rounded-lg 
+        className="w-full max-h-96 mt-10 sm:overflow-x-auto scrollbar-thin overflow-y-auto border border-gray-600 rounded-lg 
     shadow"
       >
-        <table className="min-w-full table-auto">
+        <table className="min-w-full table-auto ">
           {/* Table Header */}
           <thead className="border-b border-gray-600">
             <tr>

@@ -60,8 +60,6 @@ export default function PrivateRoute() {
     fetchTheCloseCash();
   }, []);
 
-  console.log(fectchCloseCash);
-
   const userId = auth?.user?.id;
   const today = new Date().toISOString().split("T")[0];
 
@@ -84,16 +82,20 @@ export default function PrivateRoute() {
             {/* grid col-span-8 */}
             <div className="col-span-8">
               <Headers hiddens={hiddens} hiddensClosing={hiddensClosing} />
-              <div className="grid grid-cols-12">
+              <div className="">
+                {/* grid grid-cols-12 justify-center items-center flex-wrap */}
                 {/* grid */}
 
                 {/* grid */}
                 <div className="col-span-12 shadow-sm">
-                  <Category
-                    setProductFilter={setProductFilter}
-                    handleFilterFunction={handleFilterFunction}
-                  />
-                  <div className="w-full h-auto mt-10 overflow-y-auto sm:overflow-x-auto rounded-lg shadow">
+                  <div className="overflow-x-auto whitespace-nowrap scrollbar-thin   flex space-x-3  sticky top-0 ">
+                    {" "}
+                    <Category
+                      setProductFilter={setProductFilter}
+                      handleFilterFunction={handleFilterFunction}
+                    />
+                  </div>
+                  <div className="mt-10 overflow-y-auto sm:overflow-x-auto rounded-lg shadow">
                     <Products
                       id={productFilter}
                       handleProductDispatch={handleProduct}

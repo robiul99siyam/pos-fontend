@@ -12,10 +12,12 @@ export default function Headers({ hiddens, hiddensClosing }) {
 
   console.log(hiddensClosing);
   return (
-    <div className="flex items-center space-x-5 ">
+    <div className="flex items-center space-x-5 sticky top-0 bg-deepDark text-white">
       {/* Logo Section */}
       <div>
-        <h1 className="font-serif text-3xl font-bold">POS</h1>
+        <h1 className="font-serif text-3xl font-bold hidden md:hidden lg:block">
+          POS
+        </h1>
       </div>
 
       {/* <div className="gap-5"> */}
@@ -24,8 +26,8 @@ export default function Headers({ hiddens, hiddensClosing }) {
         disabled={hiddens}
         className={`${
           hiddens
-            ? "cursor-not-allowed bg-lwsGreen text-white hover:text-gray-200  py-2 px-12 rounded-md"
-            : "bg-lwsGreen text-white hover:text-gray-200  py-2 px-12 rounded-md"
+            ? "cursor-not-allowed opacity-50 bg-lwsGreen text-white hover:text-gray-200 py-2 md:px-5 lg:px-12 rounded-md hidden md:block lg:block"
+            : "bg-lwsGreen text-white hover:text-gray-200 py-2 md:px-5 lg:px-12 rounded-md hidden md:hidden lg:block"
         }`}
       >
         Opening Cash
@@ -37,8 +39,8 @@ export default function Headers({ hiddens, hiddensClosing }) {
         disabled={hiddensClosing}
         className={`${
           hiddensClosing
-            ? "cursor-not-allowed bg-lwsGreen text-white hover:text-gray-200  py-2 px-12 rounded-md"
-            : "bg-lwsGreen text-white hover:text-gray-200  py-2 px-12 rounded-md"
+            ? "cursor-not-allowed bg-lwsGreen text-white hover:text-gray-200  py-2 md:px-5 lg:px-12 rounded-md hidden md:block lg:block"
+            : "bg-lwsGreen  text-white hover:text-gray-200  py-2 md:px-5 lg:px-12 rounded-md hidden md:block lg:block"
         }`}
       >
         Day Closed Cash
@@ -60,8 +62,10 @@ export default function Headers({ hiddens, hiddensClosing }) {
           />
         </Link>
         <div className="flex flex-col">
-          <h1 className="font-semibold">{username}</h1>
-          <p className="text-gray-400">{role}</p>
+          <h1 className="font-semibold sm:hidden md:hidden lg:block">
+            {username}
+          </h1>
+          <p className="text-gray-400 sm:hidden md:hidden lg:block">{role}</p>
         </div>
       </div>
     </div>

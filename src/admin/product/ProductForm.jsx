@@ -1,4 +1,5 @@
 import React from "react";
+import { FaSpinner } from "react-icons/fa";
 import { CategoryFetch } from "../../fetures/CategoryFetch";
 import SupplierFetch from "../../fetures/SupplierFetch";
 import Field from "../../Form/Field";
@@ -10,6 +11,7 @@ export default function ProductForm({
   register,
   errors,
   product,
+  isSubmitting,
 }) {
   const { state } = useCategory();
   const { supplierState } = useSupplier();
@@ -190,11 +192,22 @@ export default function ProductForm({
           </div>
         </div>
 
-        <button
+        {/* <button
           type="submit"
           className="bg-lwsGreen px-8 w-1/2 block m-auto py-2 mt-1 text-deepDark rounded-md"
         >
           {product ? "Update" : "Submit"}
+        </button> */}
+
+        <button
+          className={`w-1/2 bg-lwsGreen text-white py-3 mt-3 rounded-lg mb-4 transition-all hover:opacity-90 flex items-center justify-center ${
+            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+          type="submit"
+          disabled={isSubmitting} // Disable button while loading
+        >
+          {isSubmitting && <FaSpinner className="animate-spin h-5 w-5 mr-3" />}
+          {isSubmitting ? "Submiting..." : "Submit"}
         </button>
       </form>
     </>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Saly from "../../assets/Saly-1.png";
 import LoginForm from "../../auth/Login";
 export default function LoginPage() {
@@ -39,9 +40,9 @@ export default function LoginPage() {
           <div className="mt-8">
             <p className="text-center">
               No Account ?{" "}
-              {/* <Link to="/register" className="text-primary">
+              <Link to="/register" className="text-blue-600">
                 Sign up
-              </Link> */}
+              </Link>
             </p>
           </div>
         </div>

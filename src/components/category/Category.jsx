@@ -17,7 +17,7 @@ export default function Category({ handleFilterFunction, setProductFilter }) {
         {" "}
         <button
           onClick={() => setProductFilter("")}
-          className="shadow-md border  border-gray-600 hover:border-lwsGreen transform duration-1000m-3 px-6 py-2 rounded-md overflow-hidden"
+          className="shadow-md border  border-gray-600 hover:border-lwsGreen transform duration-1000m-3 px-6 py-2 rounded-md overflow-hidden "
         >
           Show All
         </button>
@@ -27,7 +27,7 @@ export default function Category({ handleFilterFunction, setProductFilter }) {
               handleFilterFunction(category?.name) || setIsOpen(true)
             }
             key={category?.id}
-            className="shadow-md border  border-gray-600 hover:border-lwsGreen transform duration-1000 m-3 px-6 py-2 rounded-md"
+            className="shadow-md border   border-gray-600 hover:border-lwsGreen transform duration-1000 m-3 px-6 py-2 rounded-md"
           >
             {category.name}
           </button>

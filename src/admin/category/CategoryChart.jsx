@@ -20,7 +20,7 @@ export default function CategoryChart() {
   };
   return (
     <div
-      className="w-full max-h-80 overflow-y-auto border border-gray-300 rounded-lg 
+      className="w-full max-h-80 overflow-y-auto scrollbar-thin border border-gray-300 rounded-lg 
     shadow"
     >
       <div className="table w-full">

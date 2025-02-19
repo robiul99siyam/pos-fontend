@@ -18,7 +18,7 @@ export default function Products({ id, handleProductDispatch }) {
     <div
       key={product.id}
       onClick={() => handleProductDispatch(product)}
-      className="p-2  rounded-md border border-gray-700 transition duration-300"
+      className="p-2  rounded-md border border-gray-700 transform duration-300 "
     >
       <img
         src={
@@ -26,7 +26,7 @@ export default function Products({ id, handleProductDispatch }) {
             ? `${import.meta.env.VITE_SERVER_BASE_URL}/${product.image}`
             : "https://via.placeholder.com/150"
         }
-        className="w-full h-[100px] object-cover rounded-md"
+        className="w-full h-[100px]  object-cover rounded-md"
         alt={product.name}
       />
       <p className="text-sm font-semibold  m-1 text-start">
